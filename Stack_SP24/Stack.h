@@ -1,11 +1,15 @@
 #ifndef STACK_H
 #define STACK_H
 
+#include <iostream>
+
+using namespace std;
+
 template <class T>
 class Stack
 {
 public:
-	Stack(int size);
+	Stack(int max_size_);
 	~Stack();
 
 	bool isEmpty();
@@ -21,10 +25,11 @@ private:
 };
 
 template <class T>
-Stack<T>::Stack(int max_size)
+Stack<T>::Stack(int max_size_)
 {
 	size = 0;
-	stack = new T[max_size];
+	max_size = max_size_;
+	stack = new T[max_size_];
 }
 
 template <class T>
@@ -60,7 +65,7 @@ inline void Stack<T>::push(T item)
 {
 	if (isFull())
 	{
-		throw "Stack is full";
+		cout << "Stack is full";
 	}
 	else
 	{ 
@@ -74,13 +79,15 @@ inline T Stack<T>::pop()
 {
 	if (isEmpty())
 	{
-		throw "Stack is empty";
+		cout << "Stack is empty";
 	}
 	else
 	{
 		size--;
 		return stack[size];
 	}
+
+	return 0;
 }
 
 template<class T>
